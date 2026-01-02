@@ -1,6 +1,5 @@
 package com.internationaltrade.logistics.goods.entity;
 
-import com.internationaltrade.logistics.goods.enums.GoodsStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,15 +27,14 @@ public class Goods {
     @Column(nullable = false)
     private String category;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
     @Column(nullable = false)
-    private Integer stock;
+    private Integer stock = 0;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private GoodsStatus status;
+    private String countryOfOrigin;
 
     @CreationTimestamp
     private LocalDateTime createdDate;
