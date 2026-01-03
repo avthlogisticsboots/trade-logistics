@@ -39,4 +39,21 @@ public class GoodsController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @PutMapping("/{goodsId}")
+    public ResponseEntity<GoodsResponseDto> updateGoods(
+            @PathVariable Long goodsId,
+            @Valid @RequestBody GoodsRequestDto goods
+    ) {
+        GoodsResponseDto response = goodsService.updateGoods(goodsId, goods);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{goodsId}")
+    public ResponseEntity<Void> deleteGoods(
+            @PathVariable Long goodsId
+    ) {
+        goodsService.deleteGoods(goodsId);
+        return ResponseEntity.noContent().build();
+    }
+
 }

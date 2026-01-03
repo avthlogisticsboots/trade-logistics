@@ -12,4 +12,7 @@ public interface GoodsService {
 
     GoodsResponseDto addGoods(GoodsRequestDto goods);
 
+    GoodsResponseDto updateGoods(Long goodsId, GoodsRequestDto goods);
+
+    void deleteGoods(Long goodsId);
 }

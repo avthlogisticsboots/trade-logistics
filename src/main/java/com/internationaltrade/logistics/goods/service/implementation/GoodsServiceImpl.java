@@ -2,7 +2,6 @@ package com.internationaltrade.logistics.goods.service.implementation;
 
 import com.internationaltrade.logistics.exception.DuplicateResourceException;
 import com.internationaltrade.logistics.exception.ResourceNotFoundException;
-import com.internationaltrade.logistics.exception.ValidationException;
 import com.internationaltrade.logistics.goods.dto.GoodsRequestDto;
 import com.internationaltrade.logistics.goods.dto.GoodsResponseDto;
 import com.internationaltrade.logistics.goods.entity.Goods;
@@ -33,7 +32,7 @@ public class GoodsServiceImpl implements GoodsService {
 
         Page<Goods> goodsPage = goodsRepository.findAll(pageable);
 
-        return goodsPage.map(GoodsMapper::toDto);
+        return goodsPage.map(GoodsMapper::toGoodsResponseDto);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class GoodsServiceImpl implements GoodsService {
                 () -> new ResourceNotFoundException("Goods not found with id " + goodsId)
         );
 
-        return GoodsMapper.toDto(goods);
+        return GoodsMapper.toGoodsResponseDto(goods);
     }
 
     @Transactional
@@ -64,7 +63,34 @@ public class GoodsServiceImpl implements GoodsService {
         newGoods.setCountryOfOrigin(dto.getCountryOfOrigin());
         newGoods.setStock(0);
 
-        return GoodsMapper.toDto(goodsRepository.save(newGoods));
+        return GoodsMapper.toGoodsResponseDto(goodsRepository.save(newGoods));
+    }
+
+    @Transactional
+    @Override
+    public GoodsResponseDto updateGoods(Long goodsId, GoodsRequestDto dto) {
+
+        Goods goods = goodsRepository.findById(goodsId).orElseThrow(
+                () -> new ResourceNotFoundException("Goods not found with id " + goodsId)
+        );
+
+        goods.setName(dto.getName());
+        goods.setCategory(dto.getCategory());
+        goods.setPrice(dto.getPrice());
+        goods.setCountryOfOrigin(dto.getCountryOfOrigin());
+
+        return GoodsMapper.toGoodsResponseDto(goodsRepository.save(goods));
+    }
+
+    @Transactional
+    @Override
+    public void deleteGoods(Long goodsId) {
+
+        Goods goods = goodsRepository.findById(goodsId).orElseThrow(
+                () -> new ResourceNotFoundException("\"Goods not found with id \" + goodsId")
+        );
+
+        goodsRepository.delete(goods);
     }
 
 }

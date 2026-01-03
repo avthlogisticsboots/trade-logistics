@@ -5,7 +5,7 @@ import com.internationaltrade.logistics.goods.entity.Goods;
 
 public class GoodsMapper {
 
-    public static GoodsResponseDto toDto(Goods goods) {
+    public static GoodsResponseDto toGoodsResponseDto(Goods goods) {
         GoodsResponseDto response = new GoodsResponseDto();
 
         response.setId(goods.getId());
