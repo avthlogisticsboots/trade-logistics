@@ -1,12 +1,10 @@
-server:
-  port: 8080
 
 spring:
   application:
     name: goods-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/trade_logistics?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/banking_system?createDatabaseIfNotExist=true
     username: root
     password: Vinu@2003
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -18,5 +16,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
 
+server:
+  port: 8080
