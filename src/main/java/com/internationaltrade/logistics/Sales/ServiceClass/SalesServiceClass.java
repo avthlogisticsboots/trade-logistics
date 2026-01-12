@@ -30,7 +30,7 @@ public class SalesServiceClass implements SalesServiceInterface {
         SalesOrder order = new SalesOrder();
         order.setTicketno("TKT-" + System.currentTimeMillis());
         order.setCustomerName(dto.getCustomerName());
-        order.setCustomerName(dto.getProductName());
+        order.setProductName(dto.getProductName());
         order.setQuantity(dto.getQuantity());
         order.setOrderDate(LocalDate.now());
         order.setStatus(OrderStatus.Created);
@@ -60,6 +60,17 @@ public class SalesServiceClass implements SalesServiceInterface {
                 .orElseThrow(() -> new RuntimeException("Order not found"));
 
         order.setStatus(OrderStatus.Shipped);
+        return orderRepo.save(order);
+    }
+
+    @Override
+    public SalesOrder packOrder(Long orderId) {
+
+        SalesOrder order = orderRepo.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        order.setStatus(OrderStatus.Packed);
+
         return orderRepo.save(order);
     }
 }
