@@ -11,7 +11,7 @@ public class SalesOrderRequestDTO {
     public String getProductName() {return ProductName;}
     public void setProductName(String productName) {this.ProductName = productName;}
 
-    public String getQuantity() {return Quantity;}
+    public int getQuantity() {return Quantity;}
 
     public void setQuantity(int quantity) {this.Quantity = quantity;}
 }

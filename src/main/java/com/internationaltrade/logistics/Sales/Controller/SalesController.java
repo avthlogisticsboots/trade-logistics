@@ -22,4 +22,9 @@ public class SalesController {
     public SalesOrder shipOrder(@PathVariable Long orderId){
         return salesService.shipOrder(orderId);
     }
+
+    @PutMapping("/pack/{orderId}")
+    public SalesOrder packOrder(@PathVariable Long orderId){
+        return salesService.packOrder(orderId);
+    }
 }
