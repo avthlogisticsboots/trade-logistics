@@ -1,4 +1,4 @@
-package com.internationaltrade.logistics.Sales.Controller;
+package com.internationaltrade.logistics.sales.controller;
 
 import com.internationaltrade.logistics.Sales.DTO.SalesOrderRequestDTO;
 import com.internationaltrade.logistics.Sales.Entity.SalesOrder;

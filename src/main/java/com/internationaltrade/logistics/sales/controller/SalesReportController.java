@@ -1,4 +1,4 @@
-package com.internationaltrade.logistics.Sales.Controller;
+package com.internationaltrade.logistics.sales.controller;
 
 import com.internationaltrade.logistics.Sales.ServiceInterface.SalesReportServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
